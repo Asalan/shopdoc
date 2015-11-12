@@ -1,0 +1,147 @@
+\documentclass[a4paper]{report}
+
+%\setcounter{section}{1}
+\usepackage{titlesec}
+\usepackage{caption} 
+\captionsetup[table]{skip=5pt}
+\renewcommand{\thesection}{\arabic{section}}
+\newcommand{\sectionbreak}{\clearpage}
+
+\usepackage{float}
+\usepackage[condensed,math]{kurier}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[character]{mathdesign}
+\usepackage{microtype}
+\usepackage{booktabs}
+
+
+\renewcommand{\arraystretch}{1.2}
+% Title Page
+\title{PAKISTAN SHOPS MANAGEMENT APP}
+\author{Najam-us-Saqib \& Arsalan Malik}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\listoftables
+
+\section{Features}
+\subsection{Basic Membership}
+\begin{itemize} 
+\item User registration
+\item Business Addition (User can add business in their account)
+\item Add products (User can add products in their businesses)
+\item Tags (User can add unique tags for their businesses or products so that they can be identified uniquely )
+\item Search (Product/business/tag based search)
+\end{itemize}
+
+\subsection{Pro Membership} 
+\begin{itemize} 
+\item Separate Website (User can have separate website which only shows their own products/data/businesses)
+\item Campaigner management (User has the ability to make their own ads and place them on their site for advertisements)
+\item Coupons (User can add coupon for their products)
+\item Location based announcements
+\item User  will be able to create more user with different roles and permission
+\end{itemize}
+
+
+\newpage
+\section{Database Tables}
+
+\begin{table}[ht]
+\centering
+\caption{User Table}
+\begin{tabular}{lll}    \toprule
+Attribute & Purpose & Datatype  \\\midrule
+\textbf{user\_id (PK)}    & To hold user ID & bigInt  \\ 
+\textbf{username}    & To hold username & varchar(100)  \\ 
+\textbf{email}    & To hold email address (If any) & varchar(100)  \\ 
+\textbf{password}    & To hold password  & varchar(100) \\
+\textbf{phone}    & To hold phone number of user  & varchar(100) \\ 
+\textbf{full\_name}    & To hold name  & varchar(100) \\
+\textbf{status}    & To hold account status, have two values(suspended, active)  & enum\\
+\bottomrule
+\end{tabular}
+\label{tab:User Table}
+\end{table}
+
+\vspace*{0.1 cm}
+\begin{table}[ht]
+\centering
+\caption{Business Table}
+\begin{tabular}{lll}    \toprule
+Attribute & Purpose & Datatype  \\\midrule
+\textbf{business\_id (PK)}    & To hold ID & bigInt  \\
+\textbf{user\_id (FK)}    & To hold ID & bigInt  \\  
+\textbf{name}    & To hold name of business & varchar(100)  \\
+\textbf{slug}    & To hold slug of business (routing purpose) & varchar(100)  \\ 
+\textbf{image}    & To hold image name of business & varchar(100)  \\ 
+\textbf{description}    & To hold business description & text\\ 
+\textbf{city}    & To hold city of business & varchar(100)\\ 
+\textbf{address}    & To hold address/location (lat, lng generated automatically)  & varchar(255) \\ 
+\textbf{tags}    & To hold tags (SEO purpose)  & text \\
+\textbf{featured}    & To show priority of business (1, 0)  & enum\\
+\textbf{business\_category}    & Hold category ID to which this business belongs & int  \\
+\textbf{lat}    & Hold business lat & double  \\
+\textbf{lng}    & Hold business lng & double  \\
+\textbf{package}    & Hold business package(Will be use in future)[basic, pro] & enum  \\
+\bottomrule
+\end{tabular}
+\label{Business Table}
+\end{table}
+
+\newpage
+\begin{table}[ht]
+\centering
+\caption{Product Table}
+\begin{tabular}{lll}    \toprule
+Attribute & Purpose & Datatype  \\\midrule
+\textbf{product\_id (PK)}    & To hold ID & bigInt  \\
+\textbf{business\_id (FK)}    & To hold ID & bigInt  \\  
+\textbf{name}    & To hold name of business & varchar(100)  \\
+\textbf{image}    & To hold image name of business & varchar(100)  \\
+\textbf{description}    & To hold product description & text\\ 
+\textbf{tags}    & To hold tags (SEO purpose)  & text \\
+\textbf{featured}    & To show priority of business (1, 0)  & enum\\
+\textbf{product\_category}    & Hold category ID to which this product belongs & int  \\
+\textbf{price}    & Hold price for particular product & int  \\
+\textbf{available}    & Holds whether a product is in stock or not(1, 0) & enum  \\
+\bottomrule
+\end{tabular}
+\label{Business Table}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Business Category Table[For super admin]}
+\begin{tabular}{lll}    \toprule
+Attribute & Purpose & Datatype  \\\midrule
+\textbf{category\_id (PK)}    & To hold ID & bigInt  \\
+\textbf{name}    & To hold name & vaechar(100)  \\  
+\bottomrule
+\end{tabular}
+\label{Business Table}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Product Category Table[For super admin]}
+\begin{tabular}{lll}    \toprule
+Attribute & Purpose & Datatype  \\\midrule
+\textbf{category\_id (PK)}    & To hold ID & bigInt  \\
+\textbf{name}    & To hold name & vaechar(100)  \\  
+\bottomrule
+\end{tabular}
+\label{Business Table}
+\end{table}
+
+%\begin{table*}
+
+
+%\end{table*}
+
+
+\end{document}          
